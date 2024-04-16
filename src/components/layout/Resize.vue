@@ -5,7 +5,7 @@
 		}"
 		:style="[{ fontSize: `${fontSize}px` }]"
 	>
-		<slot />
+		<slot></slot>
 	</div>
 </template>
 

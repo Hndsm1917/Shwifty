@@ -10,10 +10,10 @@ html {
 }
 
 body {
-  font-family: $ff-DM-Mono-Monospace;
+  font-family: $ff-Roboto;
   font-size: #{$font-size-default}px;
-  //background-color: #E8D6B1;
-  background: $main;
+  background: $bg-color;
+  color: $text-white;
 
   overflow: hidden;
   overflow-y: scroll;
@@ -23,9 +23,6 @@ body {
   flex-direction: column;
 }
 
-* {
-  letter-spacing: 0.02em;
-}
 
 #__nuxt {
   // content height fix
@@ -37,4 +34,10 @@ body {
 .layout {
   // content height fix
   flex-grow: 1;
+}
+.container {
+	max-width: em($container-max-width);
+	// max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 em(10);
 }
