@@ -44,32 +44,38 @@
 }
 // Roboto Condensed
 @mixin rbc-20-400() {
+    font-family: $ff-Roboto-Condensed;
     font-size: em(20);
     font-weight: 400;
     line-height: 140%;
    }
 @mixin rbc-32-400() {
+    font-family: $ff-Roboto-Condensed;
     font-size: em(32);
     font-weight: 400;
     line-height: 140%;
    }
 @mixin rbc-20-500() {
+    font-family: $ff-Roboto-Condensed;
     font-size: em(20);
     font-weight:500;
     line-height: 140%;
    }
    //Playfair Display
    @mixin pld-24-700() {
+    font-family: $ff-Playfair;
     font-size: em(24);
     font-weight:700;
     line-height: 110%;
    }
    @mixin pld-48-700() {
+    font-family: $ff-Playfair;
     font-size: em(48);
     font-weight:700;
     line-height: 110%;
    }
    @mixin pld-90-700() {
+    font-family: $ff-Playfair;
     font-size: em(90);
     font-weight:700;
     line-height: 110%;

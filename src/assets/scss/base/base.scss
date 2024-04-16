@@ -23,9 +23,6 @@ body {
   flex-direction: column;
 }
 
-* {
-  letter-spacing: 0.02em;
-}
 
 #__nuxt {
   // content height fix
@@ -39,7 +36,8 @@ body {
   flex-grow: 1;
 }
 .container {
-  // max-width: $container-max-width;
-  max-width: 1180px;
-  margin: 0 auto;
+	max-width: em($container-max-width);
+	// max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 em(10);
 }
