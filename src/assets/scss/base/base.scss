@@ -10,10 +10,10 @@ html {
 }
 
 body {
-  font-family: $ff-DM-Mono-Monospace;
+  font-family: $ff-Roboto;
   font-size: #{$font-size-default}px;
-  //background-color: #E8D6B1;
-  background: $main;
+  background: $bg-color;
+  color: $text-white;
 
   overflow: hidden;
   overflow-y: scroll;
@@ -37,4 +37,9 @@ body {
 .layout {
   // content height fix
   flex-grow: 1;
+}
+.container {
+  // max-width: $container-max-width;
+  max-width: 1180px;
+  margin: 0 auto;
 }

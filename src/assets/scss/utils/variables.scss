@@ -1,33 +1,32 @@
 // # font
 $font-size-default: 16;
 
-$ff-DM-Mono: 'DM Mono';
-$ff-DM-Mono-Monospace: $ff-DM-Mono, monospace;
+$ff-Roboto: 'Roboto', sans-serif;
+$ff-RobotoCondensed: 'Roboto Condensed', sans-serif;
+$ff-OpenSans: 'Open Sans', sans-serif;
+$ff-Playfair: 'Playfair Display', serif;
+
 
 // # colors
 
-$main: #18181B;
-//$white: #ffffff;
-//$text-primary: #ffffff;
-//$text-sub-text: #494949;
-//$dark-gray: #27272A;
-//$dark-gray2: #575757;
-//$table-gray: #404047;
-//$light-gray: #B6B6B6;
-//
-//$accent: #00FF47;
+$bg-color: #0A0B0C;
+$accent-color: #F99D49;
+$secondary-color: #93ABCF;
+
+$text-white: #fff;
+$text-black: #0A0B0C;
 
 
 // # paths
-$fonts-path: '/fonts';
-$images-path: '/images';
+// $fonts-path: '/fonts';
+// $images-path: '/images';
 
 // # timing
-$time-faster: 100ms;
-$time-fast: 200ms;
-$time-normal: 300ms;
-$time-slow: 400ms;
-$time-slower: 500ms;
+// $time-faster: 100ms;
+// $time-fast: 200ms;
+// $time-normal: 300ms;
+// $time-slow: 400ms;
+// $time-slower: 500ms;
 
 // # container
-$container-max-width: 1374;
+$container-max-width: 1180;
