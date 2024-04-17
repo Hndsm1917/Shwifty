@@ -14,3 +14,4 @@ import { useResizer } from '@/composables/resizer'
 
 const { fontSize, currentProjectConfig } = useResizer()
 </script>
+<style scoped lang="scss"></style>

@@ -9,7 +9,9 @@
 					</div>
 					<div class="lang header__lang">
 						<button class="lang__btn header__lang-btn" type="button">en</button>
-						<button class="lang__btn header__lang-btn header__lang-btn--active" type="button">ua</button>
+						<button class="lang__btn header__lang-btn header__lang-btn--active" type="button">
+							ua
+						</button>
 					</div>
 				</div>
 				<div class="header__left">
@@ -24,7 +26,6 @@
 									{{ text }}
 								</button>
 							</li>
-
 						</ul>
 					</nav>
 					<a class="header__font header__font--link" href="tel:+380555555555">+380 55 555 55 55</a>
@@ -55,8 +56,6 @@ function scrollTo(path) {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
-		padding-top: em(64);
 	}
 	&__right {
 		display: flex;
@@ -119,14 +118,6 @@ function scrollTo(path) {
 	&__btn {
 		width: em(180);
 		height: em(40);
-	}
-}
-
-.btn {
-	background-color: $accent-color;
-	border-radius: em(12);
-	&__text {
-		@include rbc-20-500;
 	}
 }
 </style>
