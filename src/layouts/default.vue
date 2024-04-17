@@ -1,7 +1,7 @@
 <template>
 	<div class="layout">
 		<resize class="layout__resize">
-			<Header />
+			<Header class="layout__header"/>
 			<main class="layout__main">
 				<router-view v-slot="{ Component }">
 					<transition>
@@ -9,7 +9,7 @@
 					</transition>
 				</router-view>
 			</main>
-			<Footer />
+			<Footer class="layout__footer" />
 		</resize>
 	</div>
 </template>
@@ -22,5 +22,26 @@ import Footer from '@/components/layout/Footer.vue'
 
 <style scoped lang="scss">
 .layout {
+	&__resize {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		padding-bottom: em(70);
+	}
+
+	&__footer {
+		flex: 0 0 auto;
+	}
+	&__main {
+		flex: 1 1 auto;
+	}
+	&__header {
+		// flex: 0 0 auto;
+		position: fixed;
+		top: em(64);
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+	}
 }
 </style>

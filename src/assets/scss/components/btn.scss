@@ -1,0 +1,11 @@
+.btn {
+	background-color: $accent-color;
+	border-radius: em(12);
+	&__text {
+		@include rbc-20-500;
+        &--dark {
+            color: $text-black;
+        }
+	}
+
+}
