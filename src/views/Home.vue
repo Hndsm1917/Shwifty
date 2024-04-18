@@ -4,7 +4,10 @@
 			<div class="container">
 				<div class="hero__wrapper">
 					<div class="section__h1">
-						<h1 class="section__font section__font--h1 hero__title">Музика,<br /> яка чіпляє</h1>
+						<h1 class="section__font section__font--h1 hero__title">
+							Музика,<br />
+							яка чіпляє
+						</h1>
 					</div>
 					<p class="section__font section__font--subtitle hero__subtitle">
 						Щодня нові треки. Плейлісти для кожного.
@@ -20,10 +23,10 @@
 				</div>
 			</div>
 		</section>
-		<section class="about">
+		<section class="section about">
 			<div class="about__wrapper">
 				<div class="about__picture">
-					<img class="about__img" src="../../public/images/about.jpg" alt="about" />
+					<img class="about__img" src="/images/about.jpg" alt="about" />
 				</div>
 				<div class="about__content">
 					<div class="section__h2">
@@ -48,24 +51,87 @@
 						<h2 class="section__font section__font--h2">Можливості</h2>
 					</div>
 					<ul class="abilities__list">
-						<li class="abilities__list-item">
-							<Icon />
+						<li v-for="{ icon, text } in abilities" :key="icon" class="abilities__list-item">
+							<Icon class="abilities__list-icon" :name="icon" />
+							<p class="section__font section__font--text">{{ text }}</p>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</section>
-		<section class="proposals">PROPOSALS</section>
+		<section class="section proposals">
+			<div class="container">
+				<div class="proposals__wrapper">
+					<div class="section__h2">
+						<h2 class="section__font section__font--h2">Пропозиції</h2>
+					</div>
+					<div class="proposals__card-list">
+						<ProposalsCard
+							v-for="card in cards"
+							:key="card.type"
+							:data="card"
+							class="proposals__card-item"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 </template>
 
 <script setup lang="ts">
 import Icon from '@/components/common/Icon.vue'
+import ProposalsCard from '@/components/cards/ProposalsCard.vue'
+import type { ProposalCard } from '@/types/types';
+interface Ability {
+	icon: string
+	text: string
+}
+
+const abilities: Ability[] = [
+	{ icon: 'star', text: 'Лише музика, що варта уваги' },
+	{ icon: 'playlist', text: 'Професійні авторські добірки' },
+	{ icon: 'songs', text: 'Мільйони пісень, відібраних вручну' },
+	{ icon: 'user', text: 'Адаптація під ваш смак' },
+	{ icon: 'media', text: 'Медіатека, що оновлюється щосекунди' },
+	{ icon: 'translate', text: 'Автопереклад текстів пісень українською' }
+]
+const cards: ProposalCard[] = [
+	{
+		type: 'base',
+		title: 'Базовий',
+		price: 100,
+		available: ['Доступ до всієї музичної бібліотеки', 'Доступ до відеотеки', 'Подкасти']
+	},
+	{
+		type: 'melo',
+		title: 'Меломан',
+		price: 300,
+		available: [
+			'Доступ до всієї музичної бібліотеки',
+			'Доступ до відеотеки',
+			'Подкасти',
+			'Індивідуальні добірки за запитом'
+		]
+	},
+	{
+		type: 'meloplus',
+		title: 'Меломан+',
+		price: 500,
+		available: [
+			'Доступ до всієї музичної бібліотеки',
+			'Доступ до відеотеки',
+			'Подкасти',
+			'Індивідуальні добірки за запитом',
+			'Сімейний доступ'
+		]
+	}
+]
 </script>
 
 <style lang="scss" scoped>
 .hero {
-	background-image: url(./images/cover.jpg);
+	background-image: url(/images/cover.jpg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	&__wrapper {
@@ -141,6 +207,40 @@ import Icon from '@/components/common/Icon.vue'
 .abilities {
 	&__wrapper {
 		padding: em(64) 0;
+		max-width: em(1080);
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: em(32) em(120);
+		&-item {
+			display: flex;
+			align-items: center;
+			gap: em(10);
+		}
+		&-icon {
+			width: em(54);
+			height: em(54);
+		}
+	}
+}
+.proposals {
+	&__wrapper {
+		padding-top: em(64);
+		padding-bottom: em(183);
+	}
+	&__card {
+		&-list {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			column-gap: em(20);
+			background-color: $black;
+		}
+		&-item {
+			padding: em(30) em(34);
+			border: em(2) solid $secondary-color;
+			border-radius: em(20);
+		}
 	}
 }
 </style>
