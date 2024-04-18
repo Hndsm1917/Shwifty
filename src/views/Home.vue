@@ -59,16 +59,35 @@
 				</div>
 			</div>
 		</section>
-		<section class="proposals">PROPOSALS</section>
+		<section class="section proposals">
+			<div class="container">
+				<div class="proposals__wrapper">
+					<div class="section__h2">
+						<h2 class="section__font section__font--h2">Пропозиції</h2>
+					</div>
+					<div class="proposals__card-list">
+						<ProposalsCard
+							v-for="card in cards"
+							:key="card.type"
+							:data="card"
+							class="proposals__card-item"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 </template>
 
 <script setup lang="ts">
 import Icon from '@/components/common/Icon.vue'
+import ProposalsCard from '@/components/cards/ProposalsCard.vue'
+import type { ProposalCard } from '@/types/types';
 interface Ability {
 	icon: string
 	text: string
 }
+
 const abilities: Ability[] = [
 	{ icon: 'star', text: 'Лише музика, що варта уваги' },
 	{ icon: 'playlist', text: 'Професійні авторські добірки' },
@@ -76,6 +95,37 @@ const abilities: Ability[] = [
 	{ icon: 'user', text: 'Адаптація під ваш смак' },
 	{ icon: 'media', text: 'Медіатека, що оновлюється щосекунди' },
 	{ icon: 'translate', text: 'Автопереклад текстів пісень українською' }
+]
+const cards: ProposalCard[] = [
+	{
+		type: 'base',
+		title: 'Базовий',
+		price: 100,
+		available: ['Доступ до всієї музичної бібліотеки', 'Доступ до відеотеки', 'Подкасти']
+	},
+	{
+		type: 'melo',
+		title: 'Меломан',
+		price: 300,
+		available: [
+			'Доступ до всієї музичної бібліотеки',
+			'Доступ до відеотеки',
+			'Подкасти',
+			'Індивідуальні добірки за запитом'
+		]
+	},
+	{
+		type: 'meloplus',
+		title: 'Меломан+',
+		price: 500,
+		available: [
+			'Доступ до всієї музичної бібліотеки',
+			'Доступ до відеотеки',
+			'Подкасти',
+			'Індивідуальні добірки за запитом',
+			'Сімейний доступ'
+		]
+	}
 ]
 </script>
 
@@ -171,6 +221,25 @@ const abilities: Ability[] = [
 		&-icon {
 			width: em(54);
 			height: em(54);
+		}
+	}
+}
+.proposals {
+	&__wrapper {
+		padding-top: em(64);
+		padding-bottom: em(183);
+	}
+	&__card {
+		&-list {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			column-gap: em(20);
+			background-color: $black;
+		}
+		&-item {
+			padding: em(30) em(34);
+			border: em(2) solid $secondary-color;
+			border-radius: em(20);
 		}
 	}
 }
