@@ -22,7 +22,7 @@ export const projectParams: ProjectParams = {
 		minWidth: 0,
 		minHeight: 0,
 		fontSize: 16,
-		maxWidth: 18
+		maxWidth: 16
 	},
 	mobile: {
 		name: 'mobile',

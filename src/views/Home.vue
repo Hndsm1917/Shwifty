@@ -82,7 +82,8 @@
 <script setup lang="ts">
 import Icon from '@/components/common/Icon.vue'
 import ProposalsCard from '@/components/cards/ProposalsCard.vue'
-import type { ProposalCard } from '@/types/types';
+import type { ProposalCard } from '@/types/types'
+
 interface Ability {
 	icon: string
 	text: string

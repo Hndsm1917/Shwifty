@@ -23,7 +23,13 @@
 </template>
 <script setup lang="ts">
 import Icon from '@/components/common/Icon.vue'
-import type { ProposalCard } from '@/types/types';
+import { useExchangeRatesStore } from '@/store/rates'
+import { storeToRefs } from 'pinia'
+import type { ProposalCard } from '@/types/types'
+
+const exchangeRatesStore = useExchangeRatesStore()
+const { usdRates } = storeToRefs(exchangeRatesStore)
+
 const props = defineProps<{ data: ProposalCard }>()
 </script>
 <style scoped lang="scss">
@@ -34,9 +40,9 @@ const props = defineProps<{ data: ProposalCard }>()
 	gap: em(64);
 	&__title {
 		padding-bottom: em(30);
-        &-text {
-            @include rbc-32-400;
-        }
+		&-text {
+			@include rbc-32-400;
+		}
 	}
 	&__text {
 		@include rb-20-400;

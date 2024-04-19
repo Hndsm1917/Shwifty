@@ -25,11 +25,12 @@ export default defineConfig(({ mode }) => {
 		server: {
 			port: 3000,
 			proxy: {
-				'/call/client/': process.env.VITE_SERVER_URL
-				// '/socket.io': {
-				//   target: 'ws://localhost:5174',
-				//   ws: true,
-				// },
+				'/call/client/': process.env.VITE_SERVER_URL,
+				'/p24api': {
+					target: 'https://api.privatbank.ua',
+					changeOrigin: true,
+					secure: false
+				}
 			}
 		},
 		css: {
