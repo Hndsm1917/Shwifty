@@ -15,7 +15,7 @@
 		<div class="card__bottom">
 			<div class="card__line"></div>
 			<p class="card__title-text">
-				{{ data.price }} {{ $t('proposals.currency') }} / {{ $t('proposals.period') }}
+				{{ price }} {{ $t('proposals.currency') }} / {{ $t('proposals.period') }}
 			</p>
 			<button type="button" class="btn card__btn">
 				<span class="btn__text btn__text--dark">{{ $t('proposals.button') }}</span>
@@ -24,15 +24,26 @@
 	</div>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue'
 import Icon from '@/components/common/Icon.vue'
 import { useExchangeRatesStore } from '@/store/rates'
 import { storeToRefs } from 'pinia'
 import type { ProposalCard } from '@/types/types'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
 
 const exchangeRatesStore = useExchangeRatesStore()
 const { usdRates } = storeToRefs(exchangeRatesStore)
 
 const props = defineProps<{ data: ProposalCard }>()
+const price = computed(() => {
+	if (usdRates.value?.sale) {
+		const price = Math.round(props.data.price / Number(usdRates.value.sale))
+		return locale.value === 'en' ? price : props.data.price
+	}
+	return props.data.price
+})
 </script>
 <style scoped lang="scss">
 .card {
