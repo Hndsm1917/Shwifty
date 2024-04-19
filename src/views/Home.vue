@@ -5,20 +5,20 @@
 				<div class="hero__wrapper">
 					<div class="section__h1">
 						<h1 class="section__font section__font--h1 hero__title">
-							Музика,<br />
-							яка чіпляє
+							{{ $t('hero.title_1') }}<br />
+							{{ $t('hero.title_2') }}
 						</h1>
 					</div>
 					<p class="section__font section__font--subtitle hero__subtitle">
-						Щодня нові треки. Плейлісти для кожного.
+						{{ $t('hero.subtitle') }}
 					</p>
 					<button class="btn hero__btn" type="button">
-						<span class="btn__text btn__text--dark">Почати</span>
+						<span class="btn__text btn__text--dark">{{ $t('hero.button') }}</span>
 						<Icon class="hero__btn-icon" name="arrowDown" />
 					</button>
 					<button class="hero__scroll">
 						<Icon class="hero__scroll-icon" name="mouse" />
-						<p class="hero__scroll-text">Прокрутіть вниз по деталі</p>
+						<p class="hero__scroll-text">{{ $t('hero.scroll') }}</p>
 					</button>
 				</div>
 			</div>
@@ -30,15 +30,13 @@
 				</div>
 				<div class="about__content">
 					<div class="section__h2">
-						<h2 class="section__font section__font--h2">Про нас</h2>
+						<h2 class="section__font section__font--h2">{{ $t('about.title') }}</h2>
 					</div>
 					<p class="section__font section__font--text">
-						Shwifty — це сервіс, в якому добірки створюють наші власні музичні експерти. Ми самі
-						змалечку виховували їх та виростили на таємному острові, що був повністю ізольований від
-						поганої музики. Їх смак беззаперечний.
+						{{ $t('about.text') }}
 					</p>
 					<button class="about__link">
-						<p class="about__link-text">Переконайтесь в цьому прямо зараз</p>
+						<p class="about__link-text">{{ $t('about.link') }}</p>
 						<Icon class="about__link-icon" name="arrowRight" />
 					</button>
 				</div>
@@ -48,12 +46,12 @@
 			<div class="container">
 				<div class="abilities__wrapper">
 					<div class="section__h2">
-						<h2 class="section__font section__font--h2">Можливості</h2>
+						<h2 class="section__font section__font--h2">{{ $t('abilities.title') }}</h2>
 					</div>
 					<ul class="abilities__list">
 						<li v-for="{ icon, text } in abilities" :key="icon" class="abilities__list-item">
 							<Icon class="abilities__list-icon" :name="icon" />
-							<p class="section__font section__font--text">{{ text }}</p>
+							<p class="section__font section__font--text">{{ $t(text) }}</p>
 						</li>
 					</ul>
 				</div>
@@ -63,7 +61,7 @@
 			<div class="container">
 				<div class="proposals__wrapper">
 					<div class="section__h2">
-						<h2 class="section__font section__font--h2">Пропозиції</h2>
+						<h2 class="section__font section__font--h2">{{ $t('proposals.title')}}</h2>
 					</div>
 					<div class="proposals__card-list">
 						<ProposalsCard
@@ -90,23 +88,23 @@ interface Ability {
 }
 
 const abilities: Ability[] = [
-	{ icon: 'star', text: 'Лише музика, що варта уваги' },
-	{ icon: 'playlist', text: 'Професійні авторські добірки' },
-	{ icon: 'songs', text: 'Мільйони пісень, відібраних вручну' },
-	{ icon: 'user', text: 'Адаптація під ваш смак' },
-	{ icon: 'media', text: 'Медіатека, що оновлюється щосекунди' },
-	{ icon: 'translate', text: 'Автопереклад текстів пісень українською' }
+	{ icon: 'star', text: 'abilities.star' },
+	{ icon: 'playlist', text: 'abilities.playlist' },
+	{ icon: 'songs', text: 'abilities.songs' },
+	{ icon: 'user', text: 'abilities.user' },
+	{ icon: 'media', text: 'abilities.media' },
+	{ icon: 'translate', text: 'abilities.translate' }
 ]
 const cards: ProposalCard[] = [
 	{
 		type: 'base',
-		title: 'Базовий',
+		title: 'packages.base',
 		price: 100,
-		available: ['Доступ до всієї музичної бібліотеки', 'Доступ до відеотеки', 'Подкасти']
+		available: ['available.library', 'available.video', 'available.podcasts']
 	},
 	{
 		type: 'melo',
-		title: 'Меломан',
+		title: 'packages.melo',
 		price: 300,
 		available: [
 			'Доступ до всієї музичної бібліотеки',
@@ -117,7 +115,7 @@ const cards: ProposalCard[] = [
 	},
 	{
 		type: 'meloplus',
-		title: 'Меломан+',
+		title: 'packages.melo_plus',
 		price: 500,
 		available: [
 			'Доступ до всієї музичної бібліотеки',

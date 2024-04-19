@@ -1,0 +1,59 @@
+{
+    "header": {
+        "about": "About us",
+        "abilities": "Abilities",
+        "proposals": "Proposals",
+        "download": "Download"
+    },
+    "hero": {
+        "title_1": "Music, ",
+        "title_2": "which clings ",
+        "subtitle": "New tracks every day. Playlists for everyone.",
+        "button": "Start",
+        "scroll": "Scroll down for details"
+    },
+    "about": {
+        "title": "About us",
+        "text": "Shwifty is a playlist service created by our own music experts. We ourselves raised them as children and raised them on a secret island that was completely isolated from bad music. Their taste is undeniable.",
+        "link": "Make sure of it right now"
+    },
+    "abilities": {
+        "title": "Abilities",
+        "star": "Only music worth paying attention to",
+        "playlist": "Професійні авторські добірки",
+        "songs": "Millions of handpicked songs",
+        "user": "Adaptation to your taste",
+        "media": "Media library updated every second",
+        "translate": "Automatic translation of song texts into Ukrainian"
+    },
+    "proposals": {
+        "title": "Proposals",
+        "package": "Package",
+        "includes": "Includes",
+        
+        "currency": "USD",
+        "period": "month",
+        "button": "Select"
+    },
+    "available": {
+        "library": "Access to the entire music library",
+        "video": "Access to the video library",
+        "podcasts": "Podcasts",
+        "individual": "Individual selections on request",
+        "family": "Family access"
+    },
+    "packages": {
+        "base": "Base",
+        "melo": "Melomaniac",
+        "melo_plus": "Melomaniac+"
+    },
+    "footer": {
+        "copyright": "All rights reserved",
+        "author": "Design created by",
+        "name": "Iryna Trofymenko",
+        "text_1": "This project was created within the scope of the course",
+        "text_2": "Fundamentals of Web Design",
+        "text_3": "by",
+        "text_4": "Creative Practice"
+        }
+}
