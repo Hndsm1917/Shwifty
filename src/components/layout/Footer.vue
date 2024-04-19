@@ -3,13 +3,13 @@
 		<div class="container">
 			<div class="footer__wrapper">
 				<div class="footer__block">
-					<div class="footer__copyright">2022 &copy; Всі права захищено</div>
+					<div class="footer__copyright">2022 &copy; {{ $t('footer.copyright') }}</div>
 				</div>
 
 				<div class="footer__block">
 					<div class="footer__author">
-						Дизайн стоворено студенткою <br />
-						<a class="footer__link" href="#">Iриною Трофименко</a>
+						{{ $t('footer.author') }} <br />
+						<a class="footer__link" href="#">{{ $t('footer.name') }}</a>
 					</div>
 				</div>
 
@@ -33,9 +33,10 @@
 
 				<div class="footer__text-block">
 					<div class="footer__text">
-						Цей проект створено в межах курсу <br />
-						“Основи вебдизайну” <br />
-						від &nbsp; <a class="footer__link" href="#">Креативної практики</a>
+						{{ $t('footer.text_1') }} <br />
+						{{ $t('footer.text_2') }} <br />
+						{{ $t('footer.text_3') }} &nbsp;
+						<a class="footer__link" href="#">{{ $t('footer.text_4') }}</a>
 					</div>
 				</div>
 			</div>

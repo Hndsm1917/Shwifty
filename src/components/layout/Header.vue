@@ -8,9 +8,15 @@
 						<p class="header__logo-text">Shwifty</p>
 					</div>
 					<div class="lang header__lang">
-						<button class="lang__btn header__lang-btn" type="button">en</button>
-						<button class="lang__btn header__lang-btn header__lang-btn--active" type="button">
-							ua
+						<button
+							v-for="lang in langs"
+							:key="lang"
+							@click="switchLang(lang)"
+							class="lang__btn header__lang-btn"
+							:class="{ 'header__lang-btn--active': locale === lang }"
+							type="button"
+						>
+							{{ lang }}
 						</button>
 					</div>
 				</div>
@@ -23,14 +29,14 @@
 									class="header__font header__font--link"
 									type="button"
 								>
-									{{ text }}
+									{{ $t(text) }}
 								</button>
 							</li>
 						</ul>
 					</nav>
 					<a class="header__font header__font--link" href="tel:+380555555555">+380 55 555 55 55</a>
 					<button class="btn header__btn">
-						<span class="btn__text">Завантажити</span>
+						<span class="btn__text">{{ $t('header.download') }}</span>
 					</button>
 				</div>
 			</div>
@@ -41,13 +47,21 @@
 </template>
 <script setup>
 import Icon from '@/components/common/Icon.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
+const langs = ['en', 'ua']
 const links = [
-	{ path: '', text: 'про нас' },
-	{ path: '', text: 'можливості' },
-	{ path: '', text: 'пропозиції' }
+	{ path: '', text: 'header.about' },
+	{ path: '', text: 'header.abilities' },
+	{ path: '', text: 'header.proposals' }
 ]
 function scrollTo(path) {
 	console.log(path)
+}
+function switchLang(lang) {
+	if (lang === locale.value) return
+	lang === 'en' ? (locale.value = 'en') : (locale.value = 'ua')
 }
 </script>
 <style scoped lang="scss">
@@ -96,6 +110,7 @@ function scrollTo(path) {
 		color: $secondary-color;
 		&--active {
 			color: $text-white;
+			pointer-events: none;
 		}
 	}
 	&__nav-list {

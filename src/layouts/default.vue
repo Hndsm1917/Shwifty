@@ -42,6 +42,7 @@ import Footer from '@/components/layout/Footer.vue'
 		left: 50%;
 		transform: translateX(-50%);
 		width: 100%;
+		z-index: 10;
 	}
 }
 </style>
