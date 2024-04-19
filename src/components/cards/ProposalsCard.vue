@@ -25,7 +25,13 @@
 </template>
 <script setup lang="ts">
 import Icon from '@/components/common/Icon.vue'
+import { useExchangeRatesStore } from '@/store/rates'
+import { storeToRefs } from 'pinia'
 import type { ProposalCard } from '@/types/types'
+
+const exchangeRatesStore = useExchangeRatesStore()
+const { usdRates } = storeToRefs(exchangeRatesStore)
+
 const props = defineProps<{ data: ProposalCard }>()
 </script>
 <style scoped lang="scss">

@@ -1,10 +1,10 @@
 import type { FetchOptions } from '@/types/serviceTypes'
 
-const DEFAULT_BASE_URL = 'https://api.ethrewards.io'
+const DEFAULT_BASE_URL = ''
 
 async function fetchClient({
 	baseURL = DEFAULT_BASE_URL,
-	endpoint,
+	endpoint = '',
 	method = 'GET',
 	headers = {},
 	body = null
@@ -13,6 +13,7 @@ async function fetchClient({
 		'Content-Type': 'application/json'
 	}
 
+	console.log(`${baseURL}${endpoint}`)
 	try {
 		const response = await fetch(`${baseURL}${endpoint}`, {
 			method,

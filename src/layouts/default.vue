@@ -1,7 +1,7 @@
 <template>
 	<div class="layout">
 		<resize class="layout__resize">
-			<Header class="layout__header"/>
+			<Header class="layout__header" />
 			<main class="layout__main">
 				<router-view v-slot="{ Component }">
 					<transition>
@@ -18,6 +18,14 @@
 import Resize from '@/components/layout/Resize.vue'
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
+import { onBeforeMount } from 'vue'
+import { useExchangeRatesStore } from '@/store/rates'
+
+const exchageRatesStore = useExchangeRatesStore()
+
+onBeforeMount(() => {
+	exchageRatesStore.getPrivatExchangeRates()
+})
 </script>
 
 <style scoped lang="scss">
@@ -36,7 +44,6 @@ import Footer from '@/components/layout/Footer.vue'
 		flex: 1 1 auto;
 	}
 	&__header {
-		// flex: 0 0 auto;
 		position: fixed;
 		top: em(64);
 		left: 50%;
