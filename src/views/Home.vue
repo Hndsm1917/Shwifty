@@ -82,7 +82,7 @@ import Icon from '@/components/common/Icon.vue'
 import ProposalsCard from '@/components/cards/ProposalsCard.vue'
 import { useI18n } from 'vue-i18n'
 
-import type { ProposalCard } from '../../types/types'
+import type { ProposalCard } from '@/configs/types'
 
 interface Ability {
   icon: string

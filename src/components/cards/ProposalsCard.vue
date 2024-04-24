@@ -2,9 +2,9 @@
   <div class="card">
     <div class="card__top">
       <div class="card__title">
-        <h3 class="card__title-text">{{ $t("proposals.package") }} "{{ $t(data.title) }}"</h3>
+        <h3 class="card__title-text">{{ $t('proposals.package') }} "{{ $t(data.title) }}"</h3>
       </div>
-      <p class="card__text">{{ $t("proposals.includes") }}:</p>
+      <p class="card__text">{{ $t('proposals.includes') }}:</p>
       <ul class="card__list">
         <li v-for="item in data.available" :key="item" class="card__list-item">
           <Icon name="check" class="card__list-icon" />
@@ -14,9 +14,11 @@
     </div>
     <div class="card__bottom">
       <div class="card__line" />
-      <p class="card__title-text">{{ data.price }} {{ $t("proposals.currency") }} / {{ $t("proposals.period") }}</p>
+      <p class="card__title-text">
+        {{ data.price }} {{ $t('proposals.currency') }} / {{ $t('proposals.period') }}
+      </p>
       <button type="button" class="btn card__btn">
-        <span class="btn__text btn__text--dark">{{ $t("proposals.button") }}</span>
+        <span class="btn__text btn__text--dark">{{ $t('proposals.button') }}</span>
       </button>
     </div>
   </div>
@@ -25,7 +27,7 @@
 import Icon from '@/components/common/Icon.vue'
 import { useExchangeRatesStore } from '@/store/rates'
 import { storeToRefs } from 'pinia'
-import type { ProposalCard } from '@/types/types'
+import type { ProposalCard } from '@/configs/types'
 
 const exchangeRatesStore = useExchangeRatesStore()
 const { usdRates } = storeToRefs(exchangeRatesStore)

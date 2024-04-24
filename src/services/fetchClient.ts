@@ -1,4 +1,4 @@
-import type { FetchOptions } from '@/types/serviceTypes'
+import type { FetchOptions } from '@/services/types'
 
 const DEFAULT_BASE_URL = ''
 

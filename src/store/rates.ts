@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { fetchExchangeCourseRate } from '@/services/privatExchange'
-import type { FetchPrivatExchangeResponse } from '@/types/apiTypes'
+import type { FetchPrivatExchangeResponse } from '@/store/types'
 
 interface State {
   privatExchangeRates: FetchPrivatExchangeResponse[]

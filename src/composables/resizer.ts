@@ -1,18 +1,5 @@
 import { computed, onMounted, ref } from 'vue'
-
-interface DeviceParams {
-  name: string
-  width: number
-  height: number
-  minWidth: number
-  minHeight: number
-  fontSize: number
-  maxWidth: number | null
-}
-
-interface ProjectParams {
-  [key: string]: DeviceParams
-}
+import type { ProjectParams, DeviceParams } from './types'
 
 export const projectParams: ProjectParams = {
   desktop: {
