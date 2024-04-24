@@ -1,5 +1,5 @@
 <template>
-	<div class="modal"></div>
+  <div class="modal" />
 </template>
 
 <script setup lang="ts"></script>

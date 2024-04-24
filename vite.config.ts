@@ -1,45 +1,43 @@
-import { defineConfig, loadEnv } from 'vite'
+import { type ConfigEnv, type UserConfigExport, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import eslintPlugin from 'vite-plugin-eslint'
 import svgLoader from 'vite-svg-loader'
 
 import path from 'path'
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-	process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
+export default ({ mode }: ConfigEnv): UserConfigExport => {
+  const viteEnv = loadEnv(mode, process.cwd()) as ImportMetaEnv
+  const { BASE_URL, VITE_SERVER_URL } = viteEnv
 
-	return {
-		plugins: [
-			vue(),
-			eslintPlugin(),
-			svgLoader({
-				svgo: false
-			})
-		],
-		resolve: {
-			alias: {
-				'@': path.resolve(__dirname, './src')
-			}
-		},
-		server: {
-			port: 3000,
-			proxy: {
-				'/call/client/': process.env.VITE_SERVER_URL,
-				'/p24api': {
-					target: 'https://api.privatbank.ua',
-					changeOrigin: true,
-					secure: false
-				}
-			}
-		},
-		css: {
-			preprocessorOptions: {
-				scss: {
-					additionalData: '@use \'sass:math\'; @use "@/assets/scss/utils" as *;'
-				}
-			}
-		},
-		base: process.env.BASE_URL
-	}
-})
+  return {
+    plugins: [
+      vue(),
+      svgLoader({
+        svgo: false
+      })
+    ],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src')
+      }
+    },
+    server: {
+      port: 3000,
+      proxy: {
+        '/call/client/': VITE_SERVER_URL,
+        '/p24api': {
+          target: 'https://api.privatbank.ua',
+          changeOrigin: true,
+          secure: false
+        }
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use \'sass:math\'; @use "@/assets/scss/utils" as *;'
+        }
+      }
+    },
+    base: BASE_URL
+  }
+}

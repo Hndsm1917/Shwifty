@@ -1,12 +1,12 @@
 <template>
-	<div
-		:class="{
-			'js-is-mobile': currentProjectConfig.name === 'mobile'
-		}"
-		:style="[{ fontSize: `${fontSize}px` }]"
-	>
-		<slot></slot>
-	</div>
+  <div
+    :class="{
+      'js-is-mobile': currentProjectConfig.name === 'mobile'
+    }"
+    :style="[{ fontSize: `${fontSize}px` }]"
+  >
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">

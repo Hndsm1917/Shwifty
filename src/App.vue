@@ -1,13 +1,16 @@
 <template>
-	<component :is="components[currentLayout]"> </component>
+  <component :is="components[currentLayout]" />
 </template>
 
 <script setup lang="ts">
+import { ref, defineComponent } from 'vue'
 import DefaultLayout from '@/layouts/default.vue'
-import { ref } from 'vue'
+interface LayoutComponents {
+  [key: string]: ReturnType<typeof defineComponent>
+}
 
-const components = {
-	DefaultLayout
+const components: LayoutComponents = {
+  DefaultLayout
 }
 
 const currentLayout = ref('DefaultLayout')

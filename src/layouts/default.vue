@@ -1,55 +1,56 @@
 <template>
-	<div class="layout">
-		<resize class="layout__resize">
-			<Header class="layout__header" />
-			<main class="layout__main">
-				<router-view v-slot="{ Component }">
-					<transition>
-						<component :is="Component" />
-					</transition>
-				</router-view>
-			</main>
-			<Footer class="layout__footer" />
-		</resize>
-	</div>
+  <div class="layout">
+    <resize class="layout__resize">
+      <Header class="layout__header" />
+      <main class="layout__main">
+        <router-view v-slot="{ Component }">
+          <transition>
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </main>
+      <Footer class="layout__footer" />
+    </resize>
+  </div>
 </template>
 
 <script setup lang="ts">
 import Resize from '@/components/layout/Resize.vue'
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
+
 import { onBeforeMount } from 'vue'
 import { useExchangeRatesStore } from '@/store/rates'
 
 const exchageRatesStore = useExchangeRatesStore()
 
 onBeforeMount(() => {
-	exchageRatesStore.getPrivatExchangeRates()
+  exchageRatesStore.getPrivatExchangeRates()
 })
 </script>
 
 <style scoped lang="scss">
 .layout {
-	&__resize {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		padding-bottom: em(70);
-	}
+  &__resize {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: em(70);
+  }
 
-	&__footer {
-		flex: 0 0 auto;
-	}
-	&__main {
-		flex: 1 1 auto;
-	}
-	&__header {
-		position: fixed;
-		top: em(64);
-		left: 50%;
-		transform: translateX(-50%);
-		width: 100%;
-		z-index: 10;
-	}
+  &__footer {
+    flex: 0 0 auto;
+  }
+  &__main {
+    flex: 1 1 auto;
+  }
+  &__header {
+    position: fixed;
+    top: em(64);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 10;
+  }
 }
 </style>

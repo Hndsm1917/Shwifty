@@ -1,42 +1,79 @@
-/* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
-
 module.exports = {
   root: true,
-  'extends': [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/eslint-config-typescript',
-    //'@vue/eslint-config-prettier/skip-formatting'
+  env: {
+    browser: true,
+    node: true,
+    es6: true
+  },
+  extends: [
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "@vue/prettier",
+    "@vue/eslint-config-typescript"
   ],
-  overrides: [
-    {
-      files: [
-        'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
-        'cypress/support/**/*.{js,ts,jsx,tsx}'
-      ],
-      'extends': [
-        'plugin:cypress/recommended'
-      ]
-    }
-  ],
-  plugins: ['vue', 'prettier'],
+  parser: "vue-eslint-parser",
   parserOptions: {
-    ecmaVersion: 'latest'
+    parser: "@typescript-eslint/parser",
+    ecmaVersion: 2020,
+    sourceType: "module",
+    jsxPragma: "React",
+    ecmaFeatures: {
+      jsx: true,
+      tsx: true
+    }
   },
   rules: {
     quotes: [2, 'single', { avoidEscape: true }],
-    'vue/multi-word-component-names': 'off',
     'no-unused-vars': 'warn',
     'no-console': 'off',
     'no-undef': 'off',
-    'prettier/prettier': ['warn', { singleQuote: true, useTabs: true, endOfLine: 'auto' }],
     camelcase: 'off',
     'no-case-declarations': 'off',
-    'vue/no-v-html': 'off',
     'vue/no-multiple-template-root': 'off',
     'vue/no-v-for-template-key': 'off',
     'prefer-promise-reject-errors': 'off',
-  },
-  ignorePatterns: ['jetbrains.config.js'],
+
+
+    // TS
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-debugger": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_"
+      }
+    ],
+    // Vue
+    "vue/no-v-html": "off",
+    "vue/require-default-prop": "off",
+    "vue/require-explicit-emits": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/html-self-closing": [
+      "error",
+      {
+        html: {
+          void: "always",
+          normal: "always",
+          component: "always"
+        },
+        svg: "always",
+        math: "always"
+      }
+    ],
+    // Prettier
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto"
+      }
+    ]
+  }
 }
+

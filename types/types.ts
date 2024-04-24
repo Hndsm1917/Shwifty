@@ -4,14 +4,14 @@ export type TableRow = Record<string, any>
 export type CollectionItem = number | string | Record<string, any>
 
 export interface TableField {
-	fieldSelector: string
-	theme?: string
-	subSelector?: string
+  fieldSelector: string
+  theme?: string
+  subSelector?: string
 }
 
 export interface ProposalCard {
-	type: string
-	title: string
-	price: number
-	available: string[]
+  type: string
+  title: string
+  price: number
+  available: string[]
 }
