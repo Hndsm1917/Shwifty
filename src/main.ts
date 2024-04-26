@@ -1,6 +1,6 @@
 import { createApp, markRaw } from 'vue'
 import { createPinia } from 'pinia'
-import { createI18n, useI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n'
 
 import '@/assets/scss/index.scss'
 

@@ -45,7 +45,7 @@
     "packages": {
         "base": "Base",
         "melo": "Melomaniac",
-        "melo_plus": "Melomaniac+"
+        "meloplus": "Melomaniac+"
     },
     "footer": {
         "copyright": "All rights reserved",
@@ -55,5 +55,26 @@
         "text_2": "Fundamentals of Web Design",
         "text_3": "by",
         "text_4": "Creative Practice"
-        }
+        },
+        
+
+    "form": {
+    "title": "Listen to really high-quality music!",
+    "choose_text": "Selected package: ",
+    "change": "Change",
+    "name_label": "Your name",
+    "name_placeholder": "John Doe",
+    "email_label": "Your e-mail",
+    "agree": "I agree with ",
+    "conditions": "the terms of service",
+    "register": "Register"
+    },
+    "check": {
+        "title": "Check Filled Fields",
+        "agree": "You have agreed to our",
+        "conditions": "terms of service",
+        "return": "Return to Registration Form",
+        "confirm": "Everything is correct, confirm"
+    }
+    
 }
