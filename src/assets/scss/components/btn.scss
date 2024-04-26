@@ -1,6 +1,9 @@
 .btn {
 	background-color: $accent-color;
 	border-radius: em(12);
+	&--secondary {
+		background-color: $secondary-color;
+	}
 	&__text {
 		@include rbc-20-500;
         &--dark {

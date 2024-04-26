@@ -84,6 +84,8 @@ import { useI18n } from 'vue-i18n'
 
 import type { ProposalCard } from '@/configs/types'
 
+import abilities from '@/configs/abilities'
+import proposals from '@/configs/proposals'
 interface Ability {
   icon: string
   text: string

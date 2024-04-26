@@ -45,7 +45,7 @@
 import Icon from '@/components/common/Icon.vue'
 import { useI18n } from 'vue-i18n'
 
-const { t, locale } = useI18n()
+const { locale } = useI18n()
 const langs = ['en', 'ua']
 const links = [
   { path: '', text: 'header.about' },

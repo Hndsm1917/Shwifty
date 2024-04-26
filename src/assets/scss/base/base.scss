@@ -19,10 +19,15 @@ body {
   overflow-y: scroll;
   min-height: 100vh;
   min-height: -webkit-fill-available;
+ 
 }
 
 .container {
 	max-width: em($container-max-width);
 	margin: 0 auto;
 	padding: 0 em(10);
+}
+
+.noscroll {
+  overflow-y: hidden;
 }
