@@ -17,14 +17,14 @@
 			<p class="card__title-text">
 				{{ price }} {{ $t('proposals.currency') }} / {{ $t('proposals.period') }}
 			</p>
-			<button type="button" class="btn card__btn">
+			<button @click="chooseHandler(data.type)" type="button" class="btn card__btn">
 				<span class="btn__text btn__text--dark">{{ $t('proposals.button') }}</span>
 			</button>
 		</div>
 	</div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 import Icon from '@/components/common/Icon.vue'
 import { useExchangeRatesStore } from '@/store/rates'
 import { storeToRefs } from 'pinia'
@@ -37,6 +37,7 @@ const exchangeRatesStore = useExchangeRatesStore()
 const { usdRates } = storeToRefs(exchangeRatesStore)
 
 const props = defineProps<{ data: ProposalCard }>()
+const emit = defineEmits(['choose'])
 const price = computed(() => {
 	if (usdRates.value?.sale) {
 		const price = Math.round(props.data.price / Number(usdRates.value.sale))
@@ -44,6 +45,12 @@ const price = computed(() => {
 	}
 	return props.data.price
 })
+const openModal = inject('openModal')
+function chooseHandler(pack: string) {
+	
+	emit('choose', pack)
+	openModal(pack)
+}
 </script>
 <style scoped lang="scss">
 .card {

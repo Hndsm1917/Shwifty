@@ -10,19 +10,47 @@
 				</router-view>
 			</main>
 			<Footer class="layout__footer" />
+			<TariffPicker
+				v-if="isModalShow"
+				:package="modalData"
+				@checkForm="checkData"
+				@changePackType="changeModalData"
+			/>
 		</resize>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { ref, provide } from 'vue'
 import Resize from '@/components/layout/Resize.vue'
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
+import TariffPicker from '@/components/modals/TariffPicker.vue'
 import { onBeforeMount } from 'vue'
 import { useExchangeRatesStore } from '@/store/rates'
 
+const isModalShow = ref(false)
 const exchageRatesStore = useExchangeRatesStore()
+const modalData = ref(null)
 
+function openModal(data) {
+	isModalShow.value = true
+	document.querySelector('body')?.classList.add('noscroll')
+	modalData.value = data
+}
+function closeModal() {
+	isModalShow.value = false
+	document.querySelector('body')?.classList.remove('noscroll')
+}
+function checkData() {
+	console.log("Let's check form ")
+}
+function changeModalData(data) {
+	modalData.value = data
+}
+
+provide('openModal', openModal)
+provide('closeModal', closeModal)
 onBeforeMount(() => {
 	exchageRatesStore.getPrivatExchangeRates()
 })
@@ -35,6 +63,7 @@ onBeforeMount(() => {
 		display: flex;
 		flex-direction: column;
 		padding-bottom: em(70);
+		position: relative;
 	}
 
 	&__footer {
