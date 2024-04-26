@@ -2,6 +2,7 @@
   <div class="layout">
     <resize class="layout__resize">
       <Header class="layout__header" />
+
       <main class="layout__main">
         <router-view v-slot="{ Component }">
           <transition>
@@ -9,54 +10,55 @@
           </transition>
         </router-view>
       </main>
-      <Footer class="layout__footer" />
 
-      <TariffPicker
-          v-if="isModalShow"
-          :package="modalData"
-          @checkForm="checkData"
-          @changePackType="changeModalData"
-      />
+      <ModalWrapper class="layout__modal" v-if="modalState.isModalActive" v-model:modalState="modalState" />
     </resize>
+
+    <Footer class="layout__footer" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, provide } from 'vue'
+import { onBeforeMount, ref, provide } from 'vue'
+import { useExchangeRatesStore } from '@/store/rates'
+
 import Resize from '@/components/layout/Resize.vue'
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
-import TariffPicker from '@/components/modals/TariffPicker.vue'
+import ModalWrapper from '@/components/layout/Modal.vue'
 
-import { onBeforeMount } from 'vue'
-import { useExchangeRatesStore } from '@/store/rates'
+import type { ModalState } from '@/types/types'
 
-const isModalShow = ref(false)
 const exchageRatesStore = useExchangeRatesStore()
-const modalData = ref(null)
 
-function openModal(data) {
-	isModalShow.value = true
-	document.querySelector('body')?.classList.add('noscroll')
-	modalData.value = data
-}
-function closeModal() {
-	isModalShow.value = false
-	document.querySelector('body')?.classList.remove('noscroll')
-}
-function checkData() {
-	console.log("Let's check form ")
-}
-function changeModalData(data) {
-	modalData.value = data
-}
+const modalState = ref<ModalState>({
+  componentName: '',
+  isModalActive: false,
+  modalData: null
+})
 
-provide('openModal', openModal)
+provide('activateModal', activateModal)
 provide('closeModal', closeModal)
 
 onBeforeMount(() => {
   exchageRatesStore.getPrivatExchangeRates()
 })
+
+function activateModal(name: string, data: any | null = null) {
+  modalState.value.isModalActive = true
+  modalState.value.modalData = data
+  modalState.value.componentName = name
+
+  document.querySelector('body')?.classList.add('noscroll')
+}
+
+function closeModal() {
+  modalState.value.isModalActive = false
+  modalState.value.modalData = null
+  modalState.value.componentName = ''
+
+  document.querySelector('body')?.classList.remove('noscroll')
+}
 </script>
 
 <style scoped lang="scss">
@@ -82,6 +84,15 @@ onBeforeMount(() => {
     transform: translateX(-50%);
     width: 100%;
     z-index: 10;
+  }
+
+  &__modal {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $modal-bg;
+    z-index: 20;
   }
 }
 </style>

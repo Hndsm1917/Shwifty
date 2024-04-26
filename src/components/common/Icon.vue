@@ -20,9 +20,14 @@ export default defineComponent({
   computed: {
     icon() {
       if (this.path) {
-        return defineAsyncComponent(() => import(`../../assets/svg/${this.path}/${this.name}.svg?component`))
+        return defineAsyncComponent(
+          () =>
+            import(`../../assets/svg/${this.path}/${this.name}.svg?component`)
+        )
       } else {
-        return defineAsyncComponent(() => import(`../../assets/svg/${this.name}.svg?component`))
+        return defineAsyncComponent(
+          () => import(`../../assets/svg/${this.name}.svg?component`)
+        )
       }
     }
   }

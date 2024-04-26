@@ -15,9 +15,10 @@
     <div class="card__bottom">
       <div class="card__line" />
       <p class="card__title-text">
-        {{ price }} {{ $t('proposals.currency') }} / {{ $t('proposals.period') }}
+        {{ price }} {{ $t('proposals.currency') }} /
+        {{ $t('proposals.period') }}
       </p>
-      <button @click="chooseHandler(data.type)" type="button" class="btn card__btn">
+      <button @click="changePack(data)" type="button" class="btn card__btn">
         <span class="btn__text btn__text--dark">{{ $t('proposals.button') }}</span>
       </button>
     </div>
@@ -28,28 +29,28 @@ import { computed, inject } from 'vue'
 import Icon from '@/components/common/Icon.vue'
 import { useExchangeRatesStore } from '@/store/rates'
 import { storeToRefs } from 'pinia'
-import type { ProposalCard } from '@/configs/types'
 import { useI18n } from 'vue-i18n'
 
-const { locale } = useI18n()
+import type { ProposalCard } from '@/configs/types'
 
+const { locale } = useI18n()
 const exchangeRatesStore = useExchangeRatesStore()
+
 const { usdRates } = storeToRefs(exchangeRatesStore)
+const activateModal = inject('activateModal')
 
 const props = defineProps<{ data: ProposalCard }>()
-const emit = defineEmits(['choose'])
-const price = computed(() => {
-	if (usdRates.value?.sale) {
-		const price = Math.round(props.data.price / Number(usdRates.value.sale))
-		return locale.value === 'en' ? price : props.data.price
-	}
-	return props.data.price
-})
-const openModal = inject('openModal')
-function chooseHandler(pack: string) {
 
-	emit('choose', pack)
-	openModal(pack)
+const price = computed(() => {
+  if (usdRates.value?.sale) {
+    const price = Math.round(props.data.price / Number(usdRates.value.sale))
+    return locale.value === 'en' ? price : props.data.price
+  }
+  return props.data.price
+})
+
+function changePack(pack: ProposalCard) {
+  activateModal('ModalForm', pack)
 }
 </script>
 <style scoped lang="scss">

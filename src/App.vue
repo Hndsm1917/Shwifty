@@ -3,13 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref } from 'vue'
+import type { Components } from '@/types/types'
 import DefaultLayout from '@/layouts/default.vue'
-interface LayoutComponents {
-  [key: string]: ReturnType<typeof defineComponent>
-}
 
-const components: LayoutComponents = {
+const components: Components = {
   DefaultLayout
 }
 

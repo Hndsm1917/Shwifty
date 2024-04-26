@@ -3,11 +3,11 @@
  */
 
 export default {
-  printWidth: 120,
+  printWidth: 80,
   bracketSpacing: true,
   arrowParens: 'always',
   endOfLine: 'auto',
-  singleQuote: false,
+  singleQuote: true,
   trailingComma: 'none',
   semi: false
 }

@@ -29,14 +29,18 @@ export function useResizer() {
 
   const fontSize = computed(() => {
     const config = currentProjectConfig.value
-    const horizontalRatio = Math.max(config.minWidth, _viewPortWidth.value) / config.width
-    const verticalRatio = Math.max(config.minHeight, _viewPortHeight.value) / config.height
+    const horizontalRatio =
+      Math.max(config.minWidth, _viewPortWidth.value) / config.width
+    const verticalRatio =
+      Math.max(config.minHeight, _viewPortHeight.value) / config.height
 
     const minRatio = Math.min(horizontalRatio, verticalRatio)
     const fz = config.fontSize * minRatio
 
     if (currentProjectConfig.value.maxWidth) {
-      return fz >= currentProjectConfig.value.maxWidth ? currentProjectConfig.value.maxWidth : fz
+      return fz >= currentProjectConfig.value.maxWidth
+        ? currentProjectConfig.value.maxWidth
+        : fz
     }
     return fz
   })

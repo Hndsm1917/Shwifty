@@ -23,21 +23,29 @@
         <div class="header__left">
           <nav class="nav header__nav">
             <ul class="nav__list header__nav-list">
-              <li v-for="{ path, text } in links" :key="text" class="nav__item header__nav-item">
-                <button @click="scrollTo(path)" class="header__font header__font--link" type="button">
+              <li
+                v-for="{ path, text } in links"
+                :key="text"
+                class="nav__item header__nav-item"
+              >
+                <button
+                  @click="scrollTo(path)"
+                  class="header__font header__font--link"
+                  type="button"
+                >
                   {{ t(text) }}
                 </button>
               </li>
             </ul>
           </nav>
-          <a class="header__font header__font--link" href="tel:+380555555555">+380 55 555 55 55</a>
+          <a class="header__font header__font--link" href="tel:+380555555555"
+            >+380 55 555 55 55</a
+          >
           <button class="btn header__btn">
-            <span class="btn__text">{{ t("header.download") }}</span>
+            <span class="btn__text">{{ t('header.download') }}</span>
           </button>
         </div>
       </div>
-      <!-- <RouterLink to="/">Home</RouterLink> -->
-      <!-- <RouterLink to="/about">About Us</RouterLink> -->
     </div>
   </header>
 </template>
@@ -45,13 +53,15 @@
 import Icon from '@/components/common/Icon.vue'
 import { useI18n } from 'vue-i18n'
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
+
 const langs = ['en', 'ua']
 const links = [
   { path: '', text: 'header.about' },
   { path: '', text: 'header.abilities' },
   { path: '', text: 'header.proposals' }
 ]
+
 function scrollTo(path) {
   console.log(path)
 }

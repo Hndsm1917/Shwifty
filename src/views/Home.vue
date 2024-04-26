@@ -30,7 +30,9 @@
         </div>
         <div class="about__content">
           <div class="section__h2">
-            <h2 class="section__font section__font--h2">{{ t('about.title') }}</h2>
+            <h2 class="section__font section__font--h2">
+              {{ t('about.title') }}
+            </h2>
           </div>
           <p class="section__font section__font--text">
             {{ t('about.text') }}
@@ -46,7 +48,9 @@
       <div class="container">
         <div class="abilities__wrapper">
           <div class="section__h2">
-            <h2 class="section__font section__font--h2">{{ t('abilities.title') }}</h2>
+            <h2 class="section__font section__font--h2">
+              {{ t('abilities.title') }}
+            </h2>
           </div>
           <ul class="abilities__list">
             <li v-for="{ icon, text } in abilities" :key="icon" class="abilities__list-item">
@@ -61,15 +65,12 @@
       <div class="container">
         <div class="proposals__wrapper">
           <div class="section__h2">
-            <h2 class="section__font section__font--h2">{{ t('proposals.title') }}</h2>
+            <h2 class="section__font section__font--h2">
+              {{ t('proposals.title') }}
+            </h2>
           </div>
           <div class="proposals__card-list">
-            <ProposalsCard
-              v-for="card in cards"
-              :key="card.type"
-              :data="card"
-              class="proposals__card-item"
-            />
+            <ProposalsCard v-for="card in proposals" :key="card.type" :data="card" class="proposals__card-item" />
           </div>
         </div>
       </div>
@@ -80,58 +81,13 @@
 <script setup lang="ts">
 import Icon from '@/components/common/Icon.vue'
 import ProposalsCard from '@/components/cards/ProposalsCard.vue'
-import { useI18n } from 'vue-i18n'
-
-import type { ProposalCard } from '@/configs/types'
 
 import abilities from '@/configs/abilities'
 import proposals from '@/configs/proposals'
-interface Ability {
-  icon: string
-  text: string
-}
+
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-
-const abilities: Ability[] = [
-  { icon: 'star', text: 'abilities.star' },
-  { icon: 'playlist', text: 'abilities.playlist' },
-  { icon: 'songs', text: 'abilities.songs' },
-  { icon: 'user', text: 'abilities.user' },
-  { icon: 'media', text: 'abilities.media' },
-  { icon: 'translate', text: 'abilities.translate' }
-]
-const cards: ProposalCard[] = [
-  {
-    type: 'base',
-    title: 'packages.base',
-    price: 100,
-    available: ['available.library', 'available.video', 'available.podcasts']
-  },
-  {
-    type: 'melo',
-    title: 'packages.melo',
-    price: 300,
-    available: [
-      'Доступ до всієї музичної бібліотеки',
-      'Доступ до відеотеки',
-      'Подкасти',
-      'Індивідуальні добірки за запитом'
-    ]
-  },
-  {
-    type: 'meloplus',
-    title: 'packages.melo_plus',
-    price: 500,
-    available: [
-      'Доступ до всієї музичної бібліотеки',
-      'Доступ до відеотеки',
-      'Подкасти',
-      'Індивідуальні добірки за запитом',
-      'Сімейний доступ'
-    ]
-  }
-]
 </script>
 
 <style lang="scss" scoped>

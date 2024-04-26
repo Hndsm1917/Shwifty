@@ -4,3 +4,8 @@ export interface ProposalCard {
   price: number
   available: string[]
 }
+
+export interface Ability {
+  icon: string
+  text: string
+}

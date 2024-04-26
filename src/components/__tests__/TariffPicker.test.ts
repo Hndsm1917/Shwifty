@@ -1,4 +1,4 @@
-import TariffPicker from '@/components/modals/TariffPicker.vue'
+import TariffPicker from '@/components/layout/Modal.vue'
 import { test } from 'vitest'
 import { mount } from '@vue/test-utils'
 

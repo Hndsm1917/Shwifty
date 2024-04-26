@@ -1,10 +1,11 @@
-export type FiltersLiterals = 'apr' | 'apr_30days' | 'apr_365days'
-export type Heading = string
-export type TableRow = Record<string, any>
-export type CollectionItem = number | string | Record<string, any>
+import { defineComponent } from 'vue'
 
-export interface TableField {
-  fieldSelector: string
-  theme?: string
-  subSelector?: string
+export interface ModalState {
+  componentName: string
+  isModalActive: boolean
+  modalData: null | any
+}
+
+export interface Components {
+  [key: string]: ReturnType<typeof defineComponent>
 }
