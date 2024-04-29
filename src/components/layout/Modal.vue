@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="modal__wrapper">
       <div class="modal__container">
-        <button class="modal__close-btn" @click="close" type="button">
+        <button data-cy-close="close" class="modal__close-btn" @click="close" type="button">
           <Icon name="cross" class="modal__close-icon" />
         </button>
 

@@ -11,7 +11,11 @@
         </router-view>
       </main>
 
-      <ModalWrapper class="layout__modal" v-if="modalState.isModalActive" v-model:modalState="modalState" />
+      <ModalWrapper
+        class="layout__modal"
+        v-if="modalState.isModalActive"
+        v-model:modalState="modalState"
+      />
     </resize>
 
     <Footer class="layout__footer" />

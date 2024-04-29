@@ -1,98 +1,165 @@
 <template>
   <div class="modal-form">
     <div class="modal-form__container">
-      <form class="modal-form__form" id="reg_form" @submit.prevent="submitForm">
+      <form class="modal-form__form" id="reg_form" @submit="submitForm">
         <div class="modal-form__wrapper">
           <h2 class="modal-form__title">{{ $t('form.title') }}</h2>
 
           <div class="modal-form__package">
             <p class="modal-form__label" for="package">
               {{ $t('form.choose_text') }}
-              <span class="modal-form__package-type">{{ $t('packages.' + data.type) }}</span>
+              <span
+                data-cy-modal-selector="package"
+                :data-cy-modal-val="data.type"
+                class="modal-form__package-type"
+              >
+                {{ $t('packages.' + data.type) }}
+              </span>
             </p>
 
-            <button class="modal-form__package-btn" type="button" @click="changePack">
+            <button
+              class="modal-form__package-btn"
+              type="button"
+              @click="changePack"
+            >
               {{ $t('form.change') }}
             </button>
           </div>
 
           <div class="modal-form__block">
-            <label class="modal-form__label" for="username">{{ $t('form.name_label') }}</label>
+            <label class="modal-form__label" for="name">
+              {{ $t('form.name_label') }}
+            </label>
             <input
               class="modal-form__input"
               type="text"
-              name="username"
+              name="name"
               id="username"
               :placeholder="$t('form.name_placeholder')"
-              v-model="formData.name"
+              :class="[
+                { 'modal-form__input--error': errors.name },
+                { 'modal-form__input--valid': !errors.name && meta.touched }
+              ]"
+              v-model="name"
+              v-bind="nameAttrs"
             />
+            <div>{{ errors.name }}</div>
           </div>
 
           <div class="modal-form__block">
-            <label for="useremail" class="modal-form__label">{{ $t('form.email_label') }}</label>
+            <label for="useremail" class="modal-form__label">{{
+              $t('form.email_label')
+            }}</label>
             <input
               class="modal-form__input"
               type="email"
               name="useremail"
               id="useremail"
               placeholder="user@gmail.com"
-              v-model="formData.email"
+              v-model="email"
+              v-bind="emailAttrs"
             />
+
+            <div>{{ errors.email }}</div>
 
             <Icon class="modal-form__icon" name="envelope" />
           </div>
 
           <div class="modal-form__agree">
-            <label class="modal-form__label modal-form__label--agree" for="agree">
-              <input class="modal-form__check" type="checkbox" name="agree" id="agree" v-model="formData.isAgree" />
+            <label
+              class="modal-form__label modal-form__label--agree"
+              for="isAgree"
+            >
+              <input
+                class="modal-form__check"
+                type="checkbox"
+                name="isAgree"
+                id="isAgree"
+                v-model="isAgree"
+                v-bind="isAgreeAttrs"
+              />
 
               <span class="modal-form__custom-check">
-                <Icon class="modal-form__check-icon" :class="{ visible: formData.isAgree }" name="checkbox" />
+                <Icon
+                  class="modal-form__check-icon"
+                  :class="{ visible: isAgree }"
+                  name="checkbox"
+                />
               </span>
 
               {{ $t('form.agree') }} &nbsp;
 
-              <a class="modal-form__link" href="https://gsap.com/" target="_blank">{{ $t('form.conditions') }}</a>
+              <a
+                class="modal-form__link"
+                href="https://gsap.com/"
+                target="_blank"
+                >{{ $t('form.conditions') }}</a
+              >
             </label>
+            <div>{{ errors.isAgree }}</div>
           </div>
         </div>
 
-        <button class="btn modal-form__btn" type="submit" form="reg_form">
-          <span class="btn__text btn__text--dark">{{ $t('form.register') }}</span>
+        <button
+          :disabled="!meta.valid"
+          class="btn modal-form__btn"
+          :class="{ 'btn--disabled': !meta.valid }"
+          type="submit"
+          form="reg_form"
+        >
+          <span class="btn__text btn__text--dark">
+            {{ $t('form.register') }}
+          </span>
         </button>
       </form>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { inject, ref } from 'vue'
+import { inject } from 'vue'
 import Icon from '@/components/common/Icon.vue'
 
-const formData = ref({
-  name: '',
-  email: '',
-  isAgree: false
-})
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/yup'
+import * as yup from 'yup'
 
+const activateModal = inject('activateModal')
 const props = defineProps<{
   data: any
 }>()
 
-const emit = defineEmits(['change', 'submitForm'])
+const { errors, defineField, meta, handleSubmit } = useForm({
+  initialValues: {
+    name: props.data.name ?? '',
+    email: props.data.email ?? '',
+    isAgree: props.data.isAgree ?? false
+  },
 
-const activateModal = inject('activateModal')
+  validationSchema: toTypedSchema(
+    yup.object({
+      email: yup.string().email().required(),
+      name: yup.string().min(6).required(),
+      isAgree: yup.boolean().required().isTrue()
+    })
+  )
+})
+
+const [email, emailAttrs] = defineField('email')
+const [name, nameAttrs] = defineField('name')
+const [isAgree, isAgreeAttrs] = defineField('isAgree')
 
 function changePack() {
   activateModal('ChangePack')
-  //emit('change')
 }
 
 function submitForm() {
-  activateModal('CheckFields', {
-    name: formData.value.name,
-    email: formData.value.email,
-    agree: formData.value.isAgree,
-    selectedPackage: props.data.type
+  return handleSubmit(({ name, email, isAgree }) => {
+    activateModal('CheckFields', {
+      name: name,
+      email: email,
+      agree: isAgree,
+      selectedPackage: props.data.type
+    })
   })
 }
 </script>
@@ -143,6 +210,7 @@ function submitForm() {
     @include rb-16-500;
     padding: em(10) em(16);
     border-radius: em(4);
+
     &::placeholder {
       color: $secondary-color;
     }
@@ -199,7 +267,7 @@ function submitForm() {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    transition: 0.3s ease-in;
+    transition: 150ms ease-out;
   }
 }
 .visible {

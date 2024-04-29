@@ -1,0 +1,15 @@
+[
+  {"expect_to_be_correct": false, "name": "A", "email": "a@b.co", "isAgree": true},
+  {"expect_to_be_correct": false,"name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "email": "longemailaddressaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com", "isAgree": true},
+  {"expect_to_be_correct": true, "name": "Normal Name", "email": "normal.email@example.com", "isAgree": true},
+  {"expect_to_be_correct": true, "name": "Имя Пользователя", "email": "user@почта.рф", "isAgree": true},
+  {"expect_to_be_correct": true, "name": "O'Connor", "email": "o'connor@example.com", "isAgree": true},
+  {"expect_to_be_correct": false, "name": "<script>alert('xss')</script>", "email": "xss@example.com", "isAgree": true},
+  {"expect_to_be_correct": false, "name": "Name With Numbers 123", "email": "123name@numbers.com", "isAgree": true},
+  {"expect_to_be_correct": true, "name": "Name With Numbers", "email": "123name@numbers.com", "isAgree": true},
+  {"expect_to_be_correct": false, "name": "", "email": "", "isAgree": true},
+  {"expect_to_be_correct": false, "name": "Normal Name", "email": "normal.email@example.com", "isAgree": false},
+  {"expect_to_be_correct": false, "name": "中文名字", "email": "chinese@example.com", "isAgree": true},
+  {"expect_to_be_correct": false, "name": "VeryLongNameVeryLongNameVeryLongNameVeryLongNameVeryLongNameVeryLongNameVeryLongNameVeryLongNameVeryLongNameVeryLongName", "email": "verylonglonglonglonglonglonglonglonglonglong@domain.com", "isAgree": true}
+]
+

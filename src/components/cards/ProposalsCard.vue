@@ -18,7 +18,8 @@
         {{ price }} {{ $t('proposals.currency') }} /
         {{ $t('proposals.period') }}
       </p>
-      <button @click="changePack(data)" type="button" class="btn card__btn">
+
+      <button :data-cy-card="data.type" @click="changePack(data)" type="button" class="btn card__btn">
         <span class="btn__text btn__text--dark">{{ $t('proposals.button') }}</span>
       </button>
     </div>

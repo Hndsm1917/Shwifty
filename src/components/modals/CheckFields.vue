@@ -52,8 +52,10 @@ const activateModal = inject('activateModal')
 function returnToForm() {
   const rollBackedCat = proposals.filter(({ type }) => type === props.data.selectedPackage)[0]
 
-  console.log(rollBackedCat)
-  activateModal('ModalForm', rollBackedCat)
+  activateModal('ModalForm', {
+    ...rollBackedCat,
+    ...props.data
+  })
 }
 
 function sendFormData() {
